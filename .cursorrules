@@ -1,0 +1,87 @@
+# ASL Recognition Project - Cursor Rules
+
+## Project Overview
+This is a real-time American Sign Language to Text & Speech converter using:
+- Frontend: React + TypeScript + Vite + Tailwind CSS + Framer Motion
+- Backend: FastAPI + Python + MediaPipe
+- ML: Hand landmark detection + LSTM/Transformer models
+- UI: Shadcn UI + Glassmorphism design
+
+## Code Style
+
+### TypeScript/React
+- Use functional components with hooks
+- Prefer `const` over `let`
+- Use TypeScript strict mode
+- Use Tailwind CSS for styling (no CSS modules)
+- Use Framer Motion for animations
+- Follow Shadcn UI component patterns
+
+### Python
+- Follow PEP 8 style guide
+- Use type hints
+- Use async/await for I/O operations
+- Docstrings for all functions and classes
+
+## File Organization
+- Components in `src/components/`
+- Pages in `src/pages/`
+- Services in `src/services/`
+- Backend in `backend/`
+- Models in `backend/models/`
+
+## Key Patterns
+
+### WebSocket Communication
+- Use the WebSocketService singleton
+- Handle connection/disconnection gracefully
+- Implement reconnection logic
+
+### State Management
+- Use React hooks (useState, useEffect, useCallback)
+- Minimize prop drilling
+- Use refs for mutable values
+
+### UI Components
+- All UI components should use Tailwind CSS
+- Apply glassmorphism style: `bg-gradient-to-br from-slate-900/40 to-slate-800/40 backdrop-blur-xl border-slate-700/50`
+- Use Framer Motion for all animations
+- Implement loading and error states
+
+### Backend
+- All WebSocket endpoints should validate input
+- Use proper error handling
+- Log important events
+- Return consistent JSON responses
+
+## Naming Conventions
+- Components: PascalCase (e.g., `WebcamCapture.tsx`)
+- Files: camelCase for services, PascalCase for components
+- Functions: camelCase
+- Constants: UPPER_SNAKE_CASE
+- CSS classes: Tailwind utility classes
+
+## Testing
+- Test WebSocket connections
+- Test camera permissions
+- Test gesture recognition accuracy
+- Validate model predictions
+
+## Performance
+- Optimize MediaPipe settings for performance
+- Debounce rapid state updates
+- Use React.memo for expensive components
+- Implement lazy loading where appropriate
+
+## Accessibility
+- Provide alt text for images
+- Ensure keyboard navigation
+- Use semantic HTML
+- Include ARIA labels where needed
+
+## Documentation
+- Document all public APIs
+- Include examples in comments
+- Update README for major changes
+- Keep SETUP.md current
+

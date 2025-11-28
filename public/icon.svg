@@ -1,0 +1,35 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="128" fill="url(#gradient)"/>
+  
+  <!-- Gradient -->
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="50%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Hand gesture (ILY sign) -->
+  <g transform="translate(120, 100)">
+    <!-- Palm -->
+    <path d="M 150 280 Q 120 250 100 200 L 100 180 Q 100 150 120 140 Q 140 130 160 150 L 160 180 L 160 220 Q 180 250 150 280 Z" fill="white" opacity="0.95"/>
+    
+    <!-- Thumb -->
+    <path d="M 100 180 Q 80 160 70 140 Q 65 120 75 105 Q 85 90 100 95 Q 115 100 118 120 L 120 140 L 100 180 Z" fill="white" opacity="0.95"/>
+    
+    <!-- Index finger -->
+    <path d="M 160 150 Q 155 120 155 90 Q 155 60 165 45 Q 175 30 190 35 Q 205 40 205 60 L 205 100 L 200 140 L 160 150 Z" fill="white" opacity="0.95"/>
+    
+    <!-- Pinky finger -->
+    <path d="M 150 280 Q 170 280 190 270 Q 210 260 220 240 Q 225 220 220 200 Q 215 180 200 185 L 180 200 L 170 240 L 150 280 Z" fill="white" opacity="0.95"/>
+    
+    <!-- Connection strokes for definition -->
+    <path d="M 120 140 L 160 150 M 160 180 L 160 220" stroke="rgba(6, 182, 212, 0.3)" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- Subtle glow effect -->
+  <circle cx="256" cy="256" r="200" fill="white" opacity="0.05"/>
+</svg>
+

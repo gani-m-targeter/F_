@@ -1,0 +1,127 @@
+================================================================================
+  🚀 ASL RECOGNITION SYSTEM - HOW TO RUN
+================================================================================
+
+📦 IF THIS IS YOUR FIRST TIME:
+--------------------------------------------------------------------------------
+
+  WINDOWS USERS:
+  ==============
+  1. Double-click:  setup.bat
+  2. Wait 10-15 minutes for installation
+  3. Press Y when asked to start servers
+  4. Done! Browser opens automatically
+
+  MAC/LINUX USERS:
+  ================
+  1. Open Terminal in this folder
+  2. Run: chmod +x setup.sh
+  3. Run: ./setup.sh
+  4. Wait 10-15 minutes for installation
+  5. Press y when asked to start servers
+  6. Done! Browser opens automatically
+
+================================================================================
+
+▶️  IF YOU'VE ALREADY RUN SETUP:
+--------------------------------------------------------------------------------
+
+  WINDOWS USERS:
+  ==============
+  Double-click:  quick_start_optimized.bat
+  
+  MAC/LINUX USERS:
+  ================
+  Run in Terminal:  ./quick_start.sh
+
+================================================================================
+
+🌐 ACCESS THE APPLICATION:
+--------------------------------------------------------------------------------
+
+  Main App:          http://localhost:8081
+  Sign Reference:    http://localhost:8081/signs
+  API Docs:          http://localhost:8000/docs
+
+================================================================================
+
+⚙️  PREREQUISITES (Must be installed first):
+--------------------------------------------------------------------------------
+
+  ✓ Node.js 18+     →  https://nodejs.org/
+  ✓ Python 3.9+     →  https://www.python.org/
+  ✓ Webcam (any)
+  ✓ Chrome/Firefox/Edge browser
+
+  Check if installed:
+  -------------------
+  Run in terminal:
+    node --version
+    python --version     (or python3 --version on Mac/Linux)
+    npm --version
+    pip --version        (or pip3 --version on Mac/Linux)
+
+================================================================================
+
+📁 SHARING THIS PROJECT:
+--------------------------------------------------------------------------------
+
+  TO SHARE WITH SOMEONE:
+  ======================
+  1. Compress this entire folder (sign_to_speech-main)
+  2. Send them the ZIP file
+  3. Tell them: "Just run setup.bat (Windows) or ./setup.sh (Mac/Linux)"
+  
+  WHAT THEY NEED:
+  ===============
+  - Node.js installed
+  - Python installed
+  - That's it! The setup script does everything else.
+
+================================================================================
+
+🆘 TROUBLESHOOTING:
+--------------------------------------------------------------------------------
+
+  Problem: "node: command not found"
+  Solution: Install Node.js from https://nodejs.org/
+
+  Problem: "python: command not found"
+  Solution: Install Python from https://www.python.org/
+           (Mac/Linux: use python3 instead of python)
+
+  Problem: Servers won't start
+  Solution: 1. Close all terminal windows
+            2. Run setup script again
+            3. Make sure no other app is using ports 8081 or 8000
+
+  Problem: Camera not working
+  Solution: 1. Allow camera permission in browser
+            2. Position yourself 2-3 feet from camera
+            3. Make sure camera sees your face + hands + chest
+
+  For more help, see:
+  - INSTALLATION.md  (detailed installation guide)
+  - SETUP_INSTRUCTIONS.md  (camera setup guide)
+  - README.md  (full documentation)
+
+================================================================================
+
+📞 QUICK REFERENCE:
+--------------------------------------------------------------------------------
+
+  STOP SERVERS:
+  Close the terminal windows that opened, or press Ctrl+C
+
+  RESTART SERVERS:
+  Run quick_start_optimized.bat (Windows) or ./quick_start.sh (Mac/Linux)
+
+  REINSTALL EVERYTHING:
+  Run setup.bat (Windows) or ./setup.sh (Mac/Linux) again
+
+================================================================================
+
+✨ THAT'S IT! ENJOY YOUR ASL RECOGNITION SYSTEM! 🤟
+
+================================================================================
+
