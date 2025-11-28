@@ -321,8 +321,8 @@ const WebcamCapture = ({ onGestureDetected, isActive }: WebcamCaptureProps) => {
     }
 
     // "GOOD" - Thumbs up
-    const thumbUp = thumbTip.y < wrist.y - 0.1;
-    if (thumbUp && indexCurled && middleCurled && ringCurled && pinkyCurled) {
+    const isThumbUp = thumbTip.y < wrist.y - 0.1;
+    if (isThumbUp && indexCurled && middleCurled && ringCurled && pinkyCurled) {
       return "GOOD";
     }
 
