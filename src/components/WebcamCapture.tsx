@@ -29,10 +29,10 @@ const WebcamCapture = ({ onGestureDetected, isActive }: WebcamCaptureProps) => {
         });
 
         hands.setOptions({
-          maxNumHands: 2,
-          modelComplexity: 1,
-          minDetectionConfidence: 0.5,
-          minTrackingConfidence: 0.5,
+          maxNumHands: 1,  // Single hand for faster processing
+          modelComplexity: 0,  // Lite model for less lag
+          minDetectionConfidence: 0.4,
+          minTrackingConfidence: 0.4,
         });
 
         hands.onResults(onResults);
@@ -45,8 +45,8 @@ const WebcamCapture = ({ onGestureDetected, isActive }: WebcamCaptureProps) => {
                 await handsRef.current.send({ image: videoRef.current });
               }
             },
-            width: 1280,
-            height: 720,
+            width: 640,  // Reduced for less lag
+            height: 480,
           });
           
           await camera.start();
@@ -313,6 +313,111 @@ const WebcamCapture = ({ onGestureDetected, isActive }: WebcamCaptureProps) => {
       return "Y";
     }
 
+    // MORE ACTIONABLE WORDS
+
+    // "HELP" - Thumbs up gesture
+    if (thumbTip.y < thumbMCP.y && indexCurled && middleCurled && ringCurled && pinkyCurled) {
+      return "HELP";
+    }
+
+    // "GOOD" - Thumbs up
+    const thumbUp = thumbTip.y < wrist.y - 0.1;
+    if (thumbUp && indexCurled && middleCurled && ringCurled && pinkyCurled) {
+      return "GOOD";
+    }
+
+    // "BAD" - Thumbs down
+    const thumbDown = thumbTip.y > wrist.y + 0.1;
+    if (thumbDown && indexCurled && middleCurled && ringCurled && pinkyCurled) {
+      return "BAD";
+    }
+
+    // "STOP" - Open palm facing forward
+    if (indexExtended && middleExtended && ringExtended && pinkyExtended) {
+      if (palmBase.z < -0.05) {
+        return "STOP";
+      }
+    }
+
+    // "GO" - Point forward
+    if (indexExtended && !middleExtended && !ringExtended && !pinkyExtended) {
+      if (indexTip.z < wrist.z - 0.05) {
+        return "GO";
+      }
+    }
+
+    // "WAIT" - Open hand palm down
+    if (indexExtended && middleExtended && ringExtended && pinkyExtended) {
+      if (palmBase.y > 0.5) {
+        return "WAIT";
+      }
+    }
+
+    // "COME" - Beckoning gesture (curled index)
+    if (indexCurled && !middleExtended && !ringExtended && !pinkyExtended) {
+      return "COME";
+    }
+
+    // "WATER" - W shape (three fingers)
+    if (indexExtended && middleExtended && ringExtended && !pinkyExtended) {
+      return "WATER";
+    }
+
+    // "FOOD/EAT" - Fingers together near mouth area
+    if (indexCurled && middleCurled && ringCurled && pinkyCurled) {
+      if (palmBase.y < 0.4) {
+        return "FOOD";
+      }
+    }
+
+    // "MONEY" - Rubbing fingers gesture
+    if (indexExtended && middleExtended && !ringExtended && !pinkyExtended) {
+      const fingersTouching = distance(indexTip, middleTip) < 0.03;
+      if (fingersTouching && thumbExtendedSide) {
+        return "MONEY";
+      }
+    }
+
+    // "PHONE/CALL" - Thumb and pinky extended (phone shape)
+    if (!indexExtended && !middleExtended && !ringExtended && pinkyExtended && thumbExtendedOut) {
+      return "PHONE";
+    }
+
+    // "LOVE" - Crossed arms/hands on chest (fist)
+    if (indexCurled && middleCurled && ringCurled && pinkyCurled) {
+      if (Math.abs(palmBase.x - 0.5) < 0.15) {
+        return "LOVE";
+      }
+    }
+
+    // "HAPPY" - Two hands up with spread fingers
+    if (indexExtended && middleExtended && ringExtended && pinkyExtended) {
+      if (palmBase.y < 0.35) {
+        return "HAPPY";
+      }
+    }
+
+    // "SAD" - Fingers down
+    if (indexExtended && middleExtended && ringExtended && pinkyExtended) {
+      if (indexTip.y > indexPIP.y && palmBase.y > 0.6) {
+        return "SAD";
+      }
+    }
+
+    // "FINISHED/DONE" - Both hands shaking (open palm twist)
+    if (indexExtended && middleExtended && ringExtended && pinkyExtended) {
+      if (Math.abs(palmBase.x - 0.5) > 0.3) {
+        return "FINISHED";
+      }
+    }
+
+    // "MORE" - Fingers bunched together
+    const allFingersTogether = distance(indexTip, middleTip) < 0.04 && 
+                               distance(middleTip, ringTip) < 0.04;
+    if (allFingersTogether && indexCurled) {
+      return "MORE";
+    }
+
     return null;
   };
 
@@ -350,8 +455,8 @@ const WebcamCapture = ({ onGestureDetected, isActive }: WebcamCaptureProps) => {
       <canvas
         ref={canvasRef}
         className="w-full h-full rounded-lg shadow-[var(--shadow-card)]"
-        width={1280}
-        height={720}
+        width={640}
+        height={480}
       />
     </div>
   );

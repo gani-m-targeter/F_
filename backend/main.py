@@ -29,21 +29,21 @@ GEMINI_API_KEY = "AIzaSyBMlLMXILt7mHhKQttsqWg_EckZy-3gfk8"
 
 # Configuration class for easy tuning
 class Config:
-    # Recognition thresholds
-    CONFIDENCE_THRESHOLD = 0.85  # Minimum confidence to accept a prediction
-    BUFFER_SIZE = 15  # Frames to buffer for temporal smoothing
-    MAJORITY_THRESHOLD = 0.8  # Percentage of frames that must agree
+    # Recognition thresholds - OPTIMIZED FOR SPEED
+    CONFIDENCE_THRESHOLD = 0.75  # Lower for faster detection
+    BUFFER_SIZE = 8  # Reduced for faster response
+    MAJORITY_THRESHOLD = 0.65  # Lower for quicker confirmation
     
     # Session management
     SESSION_TIMEOUT = 3600  # 1 hour in seconds
     CLEANUP_INTERVAL = 300  # 5 minutes
     
-    # Smoothing filter parameters
-    FILTER_MIN_CUTOFF = 1.0
-    FILTER_BETA = 10.0
+    # Smoothing filter parameters - OPTIMIZED
+    FILTER_MIN_CUTOFF = 1.5
+    FILTER_BETA = 8.0
     
     # Word deduplication
-    WORD_COOLDOWN = 1.0  # Seconds between same word
+    WORD_COOLDOWN = 0.5  # Faster word capture
     
     # CORS
     ALLOWED_ORIGINS = ["*"]  # Production: ["https://yourdomain.com"]
@@ -646,6 +646,250 @@ class ASLLexicon:
                     Finger.THUMB: [FingerState.EXTENDED]
                 },
                 "orientation": [Orientation.FORWARD]
+            },
+            # MORE ACTIONABLE WORDS
+            "HELP": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.FOLDED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "orientation": [Orientation.UP]
+            },
+            "THANK YOU": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.EXTENDED],
+                    Finger.RING: [FingerState.EXTENDED],
+                    Finger.PINKY: [FingerState.EXTENDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "orientation": [Orientation.FORWARD]
+            },
+            "PLEASE": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.EXTENDED],
+                    Finger.RING: [FingerState.EXTENDED],
+                    Finger.PINKY: [FingerState.EXTENDED],
+                    Finger.THUMB: [FingerState.FOLDED]
+                }
+            },
+            "SORRY": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.FOLDED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.FOLDED]
+                }
+            },
+            "GOOD": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.FOLDED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "orientation": [Orientation.FORWARD]
+            },
+            "BAD": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.EXTENDED],
+                    Finger.RING: [FingerState.EXTENDED],
+                    Finger.PINKY: [FingerState.EXTENDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "orientation": [Orientation.DOWN]
+            },
+            "WATER": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "special": "THUMB_INDEX_TOUCH"
+            },
+            "FOOD": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.CURLED],
+                    Finger.MIDDLE: [FingerState.CURLED],
+                    Finger.RING: [FingerState.CURLED],
+                    Finger.PINKY: [FingerState.CURLED],
+                    Finger.THUMB: [FingerState.CURLED]
+                },
+                "special": "ALL_TIPS_TOUCH"
+            },
+            "DRINK": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.CURLED],
+                    Finger.MIDDLE: [FingerState.CURLED],
+                    Finger.RING: [FingerState.CURLED],
+                    Finger.PINKY: [FingerState.CURLED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                }
+            },
+            "MONEY": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.EXTENDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "special": "THUMB_INDEX_TOUCH"
+            },
+            "HOME": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.CURLED],
+                    Finger.MIDDLE: [FingerState.CURLED],
+                    Finger.RING: [FingerState.CURLED],
+                    Finger.PINKY: [FingerState.CURLED],
+                    Finger.THUMB: [FingerState.CURLED]
+                }
+            },
+            "WORK": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.FOLDED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.FOLDED]
+                },
+                "orientation": [Orientation.DOWN]
+            },
+            "FRIEND": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.CURLED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.CURLED]
+                }
+            },
+            "LOVE": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.FOLDED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.FOLDED]
+                }
+            },
+            "HAPPY": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.EXTENDED],
+                    Finger.RING: [FingerState.EXTENDED],
+                    Finger.PINKY: [FingerState.EXTENDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "orientation": [Orientation.UP]
+            },
+            "SAD": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.EXTENDED],
+                    Finger.RING: [FingerState.EXTENDED],
+                    Finger.PINKY: [FingerState.EXTENDED],
+                    Finger.THUMB: [FingerState.FOLDED]
+                },
+                "orientation": [Orientation.DOWN]
+            },
+            "HUNGRY": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.CURLED],
+                    Finger.MIDDLE: [FingerState.CURLED],
+                    Finger.RING: [FingerState.CURLED],
+                    Finger.PINKY: [FingerState.CURLED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "orientation": [Orientation.DOWN]
+            },
+            "TIRED": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.CURLED],
+                    Finger.MIDDLE: [FingerState.CURLED],
+                    Finger.RING: [FingerState.CURLED],
+                    Finger.PINKY: [FingerState.CURLED],
+                    Finger.THUMB: [FingerState.CURLED]
+                },
+                "orientation": [Orientation.DOWN]
+            },
+            "BATHROOM": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.FOLDED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "special": "THUMB_INDEX_TOUCH"
+            },
+            "PHONE": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.FOLDED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.EXTENDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                }
+            },
+            "WAIT": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.EXTENDED],
+                    Finger.RING: [FingerState.EXTENDED],
+                    Finger.PINKY: [FingerState.EXTENDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "spread": True
+            },
+            "COME": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.CURLED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.FOLDED]
+                }
+            },
+            "GO": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.FOLDED],
+                    Finger.RING: [FingerState.FOLDED],
+                    Finger.PINKY: [FingerState.FOLDED],
+                    Finger.THUMB: [FingerState.FOLDED]
+                },
+                "orientation": [Orientation.FORWARD]
+            },
+            "MORE": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.CURLED],
+                    Finger.MIDDLE: [FingerState.CURLED],
+                    Finger.RING: [FingerState.CURLED],
+                    Finger.PINKY: [FingerState.CURLED],
+                    Finger.THUMB: [FingerState.CURLED]
+                },
+                "special": "ALL_TIPS_TOUCH"
+            },
+            "FINISHED": {
+                "fingers": {
+                    Finger.INDEX: [FingerState.EXTENDED],
+                    Finger.MIDDLE: [FingerState.EXTENDED],
+                    Finger.RING: [FingerState.EXTENDED],
+                    Finger.PINKY: [FingerState.EXTENDED],
+                    Finger.THUMB: [FingerState.EXTENDED]
+                },
+                "spread": True,
+                "orientation": [Orientation.DOWN]
             }
         }
 

@@ -42,15 +42,15 @@ const EnhancedWebcamCapture = memo(({
           },
         });
 
-        // Optimized settings for face + hand detection
+        // Optimized settings for SPEED - reduced lag
         holistic.setOptions({
-          modelComplexity: 1,  // 0=lite, 1=full, 2=heavy
-          smoothLandmarks: true,
-          enableSegmentation: false,  // Disable background segmentation for speed
+          modelComplexity: 0,  // Lite model for fastest speed
+          smoothLandmarks: false,  // Disable for less lag
+          enableSegmentation: false,
           smoothSegmentation: false,
-          refineFaceLandmarks: true,  // Better face detection
-          minDetectionConfidence: 0.5,
-          minTrackingConfidence: 0.5,
+          refineFaceLandmarks: false,  // Disable for speed
+          minDetectionConfidence: 0.4,
+          minTrackingConfidence: 0.4,
         });
 
         holistic.onResults(onResults);
@@ -63,8 +63,8 @@ const EnhancedWebcamCapture = memo(({
                 await holisticRef.current.send({ image: videoRef.current });
               }
             },
-            width: 1280,
-            height: 720,
+            width: 640,  // Reduced for less lag
+            height: 480,
           });
           
           await camera.start();
@@ -571,8 +571,8 @@ const EnhancedWebcamCapture = memo(({
           <canvas
             ref={canvasRef}
             className="w-full h-full object-cover"
-            width={1280}
-            height={720}
+            width={640}
+            height={480}
           />
           
           {/* Animated Shine Overlay */}
